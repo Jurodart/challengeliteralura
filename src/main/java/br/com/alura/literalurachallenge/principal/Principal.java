@@ -10,6 +10,7 @@ import br.com.alura.literalurachallenge.service.ConsumoAPI;
 import br.com.alura.literalurachallenge.service.ConverteDados;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -79,7 +80,8 @@ public class Principal {
                         System.out.println("Opção inválida");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Entrada inválida. Digite novamente");;
+                System.out.println("Entrada inválida. Digite novamente");
+                ;
                 LEITURA.nextLine();
             }
         }
@@ -90,23 +92,22 @@ public class Principal {
         List<LivroDTO> livroDTOS = new ArrayList<>();
         livroDTOS = dados.livroDTO();
 
-        if (livroDTOS.size() > 0){
-        Livro livro = new Livro(livroDTOS.get(0));
+        if (livroDTOS.size() > 0) {
+            Livro livro = new Livro(livroDTOS.get(0));
 
-            Autor autor = livroRepositorio.buscarAutorPeloNome(livro.getAutor().getAutor());
-            if (autor != null){
+            Autor autor = autorRepositorio.buscarAutorPeloNome(livro.getAutor().getAutor());
+            if (autor != null) {
                 livro.setAutor(null);
-//                livroRepositorio.save(livro);
                 livro.setAutor(autor);
             }
-        livroRepositorio.save(livro);
-        System.out.println(livro);
+            livroRepositorio.save(livro);
+            System.out.println(livro);
         } else {
             System.out.println("Livro não encontrado");
         }
     }
 
-    private ResultsDTO getDados(){
+    private ResultsDTO getDados() {
         System.out.println("Qual livro deseja pesquisar?");
         var nomeLivro = LEITURA.nextLine();
         var json = CONSUMOAPI.obterDados(ENDERECO
@@ -117,13 +118,18 @@ public class Principal {
     }
 
     private void listarLivros() {
+        List<Livro> livros = livroRepositorio.findAll();
+        livros.forEach(System.out::println);
     }
 
     private void listarAutores() {
+        List<Autor> autores = autorRepositorio.findAll();
+        autores.forEach(System.out::println);
     }
 
     private void listarAutoresPorAno() {
     }
+
 
     private void listarLivrosPorIdioma() {
     }

@@ -12,4 +12,7 @@ public interface AutorRepositorio extends JpaRepository<Autor, Long> {
 
     @Query("SELECT a FROM Livro l JOIN l.autor a WHERE a.autor = :autor")
     Autor buscarAutorPeloNome(String autor);
+
+    @Query("SELECT a FROM Livro b JOIN b.autor a WHERE a.anoNascimento <= :ano and a.anoFalecimento >= :ano")
+    List<Autor> procuraAutoresAno(Integer ano);
 }

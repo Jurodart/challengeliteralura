@@ -128,6 +128,20 @@ public class Principal {
     }
 
     private void listarAutoresPorAno() {
+        try {
+            List<Autor> autores = autorRepositorio.findAll();
+            autores.forEach(System.out::println);
+
+            System.out.println("Digite o ano: ");
+            Integer ano = LEITURA.nextInt();
+            LEITURA.nextLine();
+
+            List<Autor> listaAutoresAno = autorRepositorio.procuraAutoresAno(ano);
+            listaAutoresAno.forEach(System.out::println);
+        } catch (InputMismatchException e) {
+            System.out.println("Entrada inválida, digite um ano válido.");;
+            LEITURA.nextLine();
+        }
     }
 
 

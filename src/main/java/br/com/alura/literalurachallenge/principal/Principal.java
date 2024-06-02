@@ -47,6 +47,7 @@ public class Principal {
                     3 - Listar autores registrados
                     4 - Listar autores vivos por determinado ano
                     5 - Listar livros em um determinado idioma
+                    6 - Listar autores por nome
                     \n
                     0 - Sair
                     """;
@@ -75,6 +76,9 @@ public class Principal {
                         break;
                     case 5:
                         listarLivrosPorIdioma();
+                        break;
+                    case 6:
+                        listarAutorPorNome();
                         break;
                     default:
                         System.out.println("Opção inválida");
@@ -146,5 +150,22 @@ public class Principal {
 
 
     private void listarLivrosPorIdioma() {
+        System.out.println("""
+            Escolha um idioma para filtrar:
+            en - Inglês
+            pt - Português
+            """);
+        var idiomaEscolha = LEITURA.nextLine();
+
+        List<Livro> livrosIdioma = livroRepositorio.findByIdioma(idiomaEscolha);
+        livrosIdioma.forEach(System.out::println);
+    }
+
+    private void listarAutorPorNome() {
+        System.out.println("Deseja pesquisar por qual nome: ");
+        var nomeAutor = LEITURA.nextLine();
+
+        List<Autor> autores = autorRepositorio.procuraPorNomeAutor(nomeAutor);
+        autores.forEach(System.out::println);
     }
 }

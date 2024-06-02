@@ -13,7 +13,7 @@ A API usada foi a [Gutendex](https://gutendex.com), e por ela foram criadas as 6
 
 ## Feito com:
 
-[![My Skills](https://skillicons.dev/icons?i=js,maven,spring,jquery,postgres)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=js,maven,spring,postgres)](https://skillicons.dev)
 
 ## Redes Sociais:
 
